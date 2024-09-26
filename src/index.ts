@@ -85,7 +85,7 @@ bot.action("pagamentomensal", async (ctx): Promise<void> => {
     ⚠️ *ATENÇÃO* : *APÓS O PAGAMENTO* você deve mandar o comprovante de pagamento para o meu *CONTATO*\n\n_ou aguarde que você receberá o *link* direto no seu email_\n\n*💸 PLANO: MENSAL ( R$10 )*\n❤️ _BÔNUS: +2 MESES GRÁTIS_`,
     reply_markup: {
       inline_keyboard: [
-        [{text: "💎 IR PARA O PAGAMENTO", url: "https://https://pay.kiwify.com.br/vaDRvvN"}],
+        [{text: "💎 IR PARA O PAGAMENTO", url: "https://pay.kiwify.com.br/vaDRvvN"}],
         [{text: "✅ Enviar comprovante", url: "https://t.me/hellomoon69"}]
       ]
     }, parse_mode: "Markdown"
