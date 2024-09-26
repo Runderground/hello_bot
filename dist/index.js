@@ -87,6 +87,7 @@ bot.action("pagamentomensal", async (ctx) => {
     });
 });
 // Deixar o bot online
+console.log("✅ Bot foi inicializado com sucesso!");
 bot.launch();
 // Graceful stop ( sla que porra é essa )
 process.once("SIGINT", () => bot.stop("SIGINT"));

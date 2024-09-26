@@ -93,6 +93,7 @@ bot.action("pagamentomensal", async (ctx): Promise<void> => {
 })
 
 // Deixar o bot online
+console.log("✅ Bot foi inicializado com sucesso!")
 bot.launch();
 
 // Graceful stop ( sla que porra é essa )
