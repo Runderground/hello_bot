@@ -1,11 +1,20 @@
 // Importações de dependencias
 import "dotenv/config";
 import { Telegraf, Input, Markup } from "telegraf";
+import { createServer } from 'http'
 import { message } from "telegraf/filters";
 const TOKEN: any = process.env.BOT_TOKEN;
+const PORT: any = process.env.PORT;
 
 // Instanciar o bot
 const bot = new Telegraf(TOKEN);
+// Criando servidor
+const server = createServer((req, res) => {
+  res.end('✅ Bot foi inicializado com sucesso! 🔥 Versão: 1.0.4');
+})
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+})
 
 // Iniciar conversa com o BOT
 bot.start(async (ctx): Promise<void> => {
@@ -94,10 +103,46 @@ bot.action("pagamentomensal", async (ctx): Promise<void> => {
   })
 })
 
+// bot.telegram.getChat("@bondedos").then((chat) => { console.log("ID:", chat.id)})
+
+// bot.telegram.sendMessage("-1002344968859", "Teste")
 // Deixar o bot online
 console.log("✅ Bot foi inicializado com sucesso!")
-console.log("🔥 Versão: 1.0.1")
+console.log("🔥 Versão: 1.0.4")
 bot.launch();
+
+// Depuração do Bot
+let keepSending: boolean = true
+async function loopMensagem(): Promise<void> {
+  while (keepSending) {
+    try {
+      let currentDate = new Date()
+      await bot.telegram.sendMessage("-1002344968859", `Bot Online! ${currentDate.getHours()}:${currentDate.getMinutes()}`)
+      console.log(`[ Depurando ] ${currentDate.getHours()}:${currentDate.getMinutes()}`)
+
+      await delay(5000)
+  } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+// Iniciar Loop
+bot.command('iniciarloop', (ctx) => {
+  ctx.reply("Iniciando o loop de mensagens...")
+  keepSending = true
+  loopMensagem()
+})
+
+// Parar loop
+bot.command('pararloop', (ctx) => {
+  ctx.reply("Parando o loop de mensagens...")
+  keepSending = false
+})
 
 // Graceful stop ( sla que porra é essa )
 

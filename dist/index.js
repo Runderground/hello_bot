@@ -3,9 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Importações de dependencias
 require("dotenv/config");
 const telegraf_1 = require("telegraf");
+const http_1 = require("http");
 const TOKEN = process.env.BOT_TOKEN;
+const PORT = process.env.PORT;
 // Instanciar o bot
 const bot = new telegraf_1.Telegraf(TOKEN);
+// Criando servidor
+const server = (0, http_1.createServer)((req, res) => {
+    res.end('✅ Bot foi inicializado com sucesso! 🔥 Versão: 1.0.4');
+});
+server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
 // Iniciar conversa com o BOT
 bot.start(async (ctx) => {
     await ctx.replyWithPhoto(telegraf_1.Input.fromURL("https://i.imgur.com/fIFDB5k.png"), {
@@ -88,10 +97,41 @@ bot.action("pagamentomensal", async (ctx) => {
         }, parse_mode: "Markdown"
     });
 });
+// bot.telegram.getChat("@bondedos").then((chat) => { console.log("ID:", chat.id)})
+// bot.telegram.sendMessage("-1002344968859", "Teste")
 // Deixar o bot online
 console.log("✅ Bot foi inicializado com sucesso!");
-console.log("🔥 Versão: 1.0.1");
+console.log("🔥 Versão: 1.0.4");
 bot.launch();
+// Depuração do Bot
+let keepSending = true;
+async function loopMensagem() {
+    while (keepSending) {
+        try {
+            let currentDate = new Date();
+            await bot.telegram.sendMessage("-1002344968859", `Bot Online! ${currentDate.getHours()}:${currentDate.getMinutes()}`);
+            console.log(`[ Depurando ] ${currentDate.getHours()}:${currentDate.getMinutes()}`);
+            await delay(5000);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+}
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+// Iniciar Loop
+bot.command('iniciarloop', (ctx) => {
+    ctx.reply("Iniciando o loop de mensagens...");
+    keepSending = true;
+    loopMensagem();
+});
+// Parar loop
+bot.command('pararloop', (ctx) => {
+    ctx.reply("Parando o loop de mensagens...");
+    keepSending = false;
+});
 // Graceful stop ( sla que porra é essa )
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
