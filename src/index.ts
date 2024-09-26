@@ -9,7 +9,7 @@ const bot = new Telegraf(TOKEN);
 
 // Iniciar conversa com o BOT
 bot.start(async (ctx): Promise<void> => {
-  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/pwafciG.jpeg"), {
+  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/fIFDB5k.png"), {
     caption: `🥰 Oieee *${ctx.from.first_name}*!! Me chamo Heloísa 🌠, tenho 22 aninhos e sou bem fogosa 🔥🔥\n\n
       👀 Já que você me chamou, provavelmente está interessados nos meus conteúdos né? Comigo você vai ter:\n\n
       ✅ Conteúdos exclusivos e picantes.\n
@@ -28,7 +28,7 @@ bot.start(async (ctx): Promise<void> => {
 // Callback para abrir o menu sobre VIP
 bot.action("vip", async (ctx): Promise<void> => {
   await ctx.deleteMessage();
-  ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/qP2f9TX.jpeg"), {
+  ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/yJ8CO1l.png"), {
     caption: `💕 *${ctx.from.first_name}* você está a um passo de ter acesso aos meus conteúdos *VIP*, aqui você pode escolher qual é o melhor plano para você!\n\n
     ⚠️ *ALERTA* : Estou com uma *PROMOÇÃO* por pouco tempo, todos os meus planos estão com bônus exclusivos! não perca a chance.\n\n
     ❤️‍🔥 *VIP VITALÍCIO* : *R$17* _( R$20 OFF )_\n\n
@@ -46,7 +46,7 @@ bot.action("vip", async (ctx): Promise<void> => {
 //Callback para voltar ao menu inicial
 bot.action("inicio", async (ctx): Promise<void> => {
   await ctx.deleteMessage();
-  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/pwafciG.jpeg"), {
+  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/fIFDB5k.png"), {
     caption: `🥰 Oieee *${ctx.from.first_name}*!! Me chamo Heloísa 🌠, tenho 22 aninhos e sou bem fogosa 🔥🔥\n\n
       👀 Já que você me chamou, provavelmente está interessados nos meus conteúdos né? Comigo você vai ter:\n\n
       ✅ Conteúdos exclusivos e picantes.\n
@@ -65,13 +65,14 @@ bot.action("inicio", async (ctx): Promise<void> => {
 // Pre-Checkout Vitalício
 bot.action("pagamentovip", async (ctx): Promise<void> => {
   await ctx.deleteMessage();
-  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/S3jxmPs.jpeg"), {
+  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/ja3vCYa.png"), {
     caption: `  😻 Muitooo obrigada ${ctx.from.first_name} por querer fazer parte desse meu mundinho. 🎉\n\n
     ⚠️ *ATENÇÃO* : *APÓS O PAGAMENTO* você deve mandar o comprovante de pagamento para o meu *CONTATO*\n\n_ou aguarde que você receberá o *link* direto no seu email_\n\n*💸 PLANO: VITALÍCIO ( R$17 ) *\n❤️ _BÔNUS: R$20 OFF_`,
     reply_markup: {
       inline_keyboard: [
-        [{text: "💎 IR PARA O PAGAMENTO", url: "https://pay.kiwify.com.br/kSqVvVv"}],
-        [{text: "✅ Enviar comprovante", url: "https://t.me/hellomoon69"}]
+        [{text: "💎 IR PARA O PAGAMENTO", url: "https://pay.kiwify.com.br/vaDRvvN"}],
+        [{text: "✅ Enviar comprovante", url: "https://t.me/hellomoon69"}],
+        [{text: "◀️", callback_data: "inicio"}]
       ]
     }, parse_mode: "Markdown"
   })
@@ -80,13 +81,14 @@ bot.action("pagamentovip", async (ctx): Promise<void> => {
 // Pre-Checkout Mensal
 bot.action("pagamentomensal", async (ctx): Promise<void> => {
   await ctx.deleteMessage();
-  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/rpHSZbt.jpeg"), {
+  await ctx.replyWithPhoto(Input.fromURL("https://i.imgur.com/ja3vCYa.png"), {
     caption: `  😻 Muitooo obrigada ${ctx.from.first_name} por querer fazer parte desse meu mundinho. 🎉\n\n
     ⚠️ *ATENÇÃO* : *APÓS O PAGAMENTO* você deve mandar o comprovante de pagamento para o meu *CONTATO*\n\n_ou aguarde que você receberá o *link* direto no seu email_\n\n*💸 PLANO: MENSAL ( R$10 )*\n❤️ _BÔNUS: +2 MESES GRÁTIS_`,
     reply_markup: {
       inline_keyboard: [
-        [{text: "💎 IR PARA O PAGAMENTO", url: "https://pay.kiwify.com.br/vaDRvvN"}],
-        [{text: "✅ Enviar comprovante", url: "https://t.me/hellomoon69"}]
+        [{text: "💎 IR PARA O PAGAMENTO", url: "https://pay.kiwify.com.br/kSqVvVv"}],
+        [{text: "✅ Enviar comprovante", url: "https://t.me/hellomoon69"}],
+        [{text: "◀️", callback_data: "inicio"}]
       ]
     }, parse_mode: "Markdown"
   })
