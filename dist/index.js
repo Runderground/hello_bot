@@ -9,7 +9,7 @@ const bot = new telegraf_1.Telegraf(TOKEN);
 // Iniciar conversa com o BOT
 bot.start(async (ctx) => {
     await ctx.replyWithPhoto(telegraf_1.Input.fromURL("https://i.imgur.com/pwafciG.jpeg"), {
-        caption: `🥰 Oieee *${ctx.from.first_name}*!! Me chamo Heloísa, tenho 22 aninhos e sou bem fogosa 🔥🔥\n\n
+        caption: `🥰 Oieee *${ctx.from.first_name}*!! Me chamo Heloísa 🌠, tenho 22 aninhos e sou bem fogosa 🔥🔥\n\n
       👀 Já que você me chamou, provavelmente está interessados nos meus conteúdos né? Comigo você vai ter:\n\n
       ✅ Conteúdos exclusivos e picantes.\n
       ✅ Melhor custo beneficio.\n
